@@ -3,6 +3,9 @@ from django.http import HttpResponse
 
 from .models import Greeting
 
+import random
+from . import fortuneList
+
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
@@ -20,6 +23,6 @@ def db(request):
 
 def home(request):
 
-    name = {'Name':'Yumana'}
-
-    return render(request, "home.html", name)
+    fortune = random.choice(fortuneList.fortuneList)
+    context = {'fortune': fortune}
+    return render(request, "home.html", context)
